@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+    <style>
+        /* CSS pour rendre le formulaire agréable */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #5cb85c;
+            color: white;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        #message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Connexion Sécurisée (Simulée)</h2>
+    <form id="loginForm">
+        <label for="email">Adresse E-mail :</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Mot de Passe :</label>
+        <input type="password" id="password" name="password" required>
+
+        <div id="message"></div>
+
+        <button type="submit">Se Connecter</button>
+    </form>
+</div>
+
+<script>
+    // Le Mot de Passe Secret que le script va vérifier
+    const MOT_DE_PASSE_SECRETS = "supercode123";
+    
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+        
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const messageDiv = document.getElementById('message');
+
+        // 1. Validation de base
+        if (!email || !password) {
+            messageDiv.textContent = "Veuillez remplir tous les champs.";
+            return;
+        }
+
+        // 2. Simulation de la vérification du mot de passe
+        // ATTENTION : Cette vérification est visible dans le code source et n'est PAS sécurisée.
+        // Elle sert uniquement pour ce projet statique d'apprentissage.
+        if (password === MOT_DE_PASSE_SECRETS) {
+            messageDiv.textContent = "Connexion réussie ! Redirection en cours...";
+            messageDiv.style.color = "green";
+            
+            // Redirige vers la nouvelle page après 1.5 seconde
+            setTimeout(function() {
+                window.location.href = "success.html"; 
+            }, 1500);
+
+        } else {
+            messageDiv.textContent = "Mot de passe incorrect ou E-mail non reconnu.";
+        }
+    });
+</script>
+
+</body>
+</html>
